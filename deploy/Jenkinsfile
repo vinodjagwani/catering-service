@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+    }
+    stages{
+
+	   stage('checkout project') {
+	            steps {
+	                git 'https://bitbucket.org/vinodjagwani/catering-service'
+	           }
+	   }
+
+	   stage ('Build') {
+	   		steps{
+	   		sh 'mvn clean package docker:build'
+	   		}
+	   }
+
+	   stage('Docker Push') {
+	       steps {
+		   		withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+		          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+		          sh 'docker push vinodjagwani/catering-service:latest'
+		        }
+			}
+	   }
+
+	   stage('AWS Push'){
+		   steps{
+					sh "aws ecr get-login"
+ 	    			sh "docker tag vinodjagwani/catering-service:latest 299857441992.dkr.ecr.us-east-1.amazonaws.com/vinodjagwani/catering-service:latest"
+    				sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/vinodjagwani/catering-service:latest"
+		   }
+	   }
+
+	   stage ('Run EC2 instance') {
+       	   		steps{
+       	   		sh './aws-app.sh'
+       	   		}
+       	   }
+	}
+
+}

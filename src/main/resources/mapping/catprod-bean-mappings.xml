@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <!-- catering product request to catering product entity -->
+    <mapping map-id="cat_prod_r_e_id">
+        <class-a>de.caterwings.catering.dto.CateringProductRequest</class-a>
+        <class-b>de.caterwings.catering.entity.CateringProductEntity</class-b>
+        <field>
+            <a>vendorUid</a>
+            <b>vendorUid</b>
+        </field>
+        <field>
+            <a>title</a>
+            <b>title</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>description</b>
+        </field>
+        <field>
+            <a>price</a>
+            <b>price</b>
+        </field>
+        <field>
+            <a>dietaryFlag</a>
+            <b>dietaryFlag</b>
+        </field>
+    </mapping>
+
+    <!-- catering product entity to catering product response -->
+    <mapping map-id="cat_prod_e_rs_id">
+        <class-a>de.caterwings.catering.entity.CateringProductEntity</class-a>
+        <class-b>de.caterwings.catering.dto.CateringProductResponse</class-b>
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>vendorUid</a>
+            <b>vendorUid</b>
+        </field>
+        <field>
+            <a>title</a>
+            <b>title</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>description</b>
+        </field>
+        <field>
+            <a>price</a>
+            <b>price</b>
+        </field>
+        <field>
+            <a>dietaryFlag</a>
+            <b>dietaryFlag</b>
+        </field>
+    </mapping>
+</mappings>

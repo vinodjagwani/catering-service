@@ -1,0 +1,32 @@
+spring:
+  main.allow-bean-definition-overriding: true
+  zipkin:
+    baseUrl: http://localhost:9411
+    enabled: true
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 1.0
+    web:
+      enabled: true
+    opentracing:
+      enabled: true
+
+mongo:
+  host: ${MONGO_HOST}
+  port: ${MONGO_PORT}
+  database: ${MONGO_DATABASE}
+
+logging:
+  level:
+    org.zalando.logbook: TRACE
+
+logbook:
+  include:
+    - /api/**
+    - /actuator/**
+  exclude:
+    - /actuator/health
+  filter.enabled: true
+  format.style: splunk
+  strategy: default

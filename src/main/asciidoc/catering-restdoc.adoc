@@ -1,0 +1,153 @@
+= Caterwings - Catering service API
+v 1.0
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:highlightjs-theme: github
+:toc: left
+:toclevels: 4
+:sectlinks:
+:sectnums:
+:snippets: ../../../target/generated-snippets
+
+== Introduction
+Created by Vinod
+
+Success/Fail indicator is HTTP status which 2xx mean success, and non-2xx mean fail
+
+Only 200, 400, 500 are used
+
+
+== Success (200 HTTP status)
+----
+{
+    "id": "5cfe299a9e6c8057c12dde63",
+    "vendorUid": "description",
+    "title": "title",
+    "description": "this is test product",
+    "price": 100,
+    "image": "5cfe9c6ece237a289318fcfe",
+    "dietaryFlag": "vegan",
+    "views": 9
+}
+----
+
+== Fail (Non-200 HTTP status)
+----
+{
+    "code": 1000,
+    "message": "ENTITY_NOT_FOUND",
+    "errors": [
+        {
+            "domain": "",
+            "reason": "ENTITY_NOT_FOUND",
+            "message": "catering product not found [5cfe29999e6c8057c12dde62]"
+        }
+    ]
+}
+----
+
+== Catering Catering Product
+
+
+=== Create Catering Product
+====
+Request
+include::{snippets}/create-catering-product/http-request.adoc[]
+====
+====
+Request Body Fields
+include::{snippets}/create-catering-product/request-fields.adoc[]
+====
+====
+Response
+include::{snippets}/create-catering-product/http-response.adoc[]
+====
+====
+Response Body Fields
+include::{snippets}/create-catering-product/response-fields.adoc[]
+====
+
+
+=== Update Catering Product
+====
+Request
+include::{snippets}/update-catering-product/http-request.adoc[]
+====
+====
+Request Path Parameter
+include::{snippets}/update-catering-product/path-parameters.adoc[]
+====
+====
+Request Body Fields
+include::{snippets}/update-catering-product/request-fields.adoc[]
+====
+====
+Response
+include::{snippets}/update-catering-product/http-response.adoc[]
+====
+====
+Response Body Fields
+include::{snippets}/update-catering-product/response-fields.adoc[]
+====
+
+
+=== Search Catering Product
+====
+Request
+include::{snippets}/get-all-catering-products/http-request.adoc[]
+====
+====
+Request Parameters
+include::{snippets}/get-all-catering-products/request-parameters.adoc[]
+====
+====
+Response
+include::{snippets}/get-all-catering-products/http-response.adoc[]
+====
+====
+Response Body Fields
+include::{snippets}/get-all-catering-products/response-fields.adoc[]
+====
+
+
+=== Delete Catering Product
+====
+Request
+include::{snippets}/delete-catering-product/http-request.adoc[]
+====
+====
+Request Path Parameter
+include::{snippets}/delete-catering-product/path-parameters.adoc[]
+====
+====
+Response
+include::{snippets}/delete-catering-product/http-response.adoc[]
+====
+
+
+
+=== Image Upload
+====
+Request
+include::{snippets}/upload-image/http-request.adoc[]
+====
+====
+Response
+include::{snippets}/upload-image/http-response.adoc[]
+====
+
+
+=== Image Download
+====
+Request
+include::{snippets}/download-image/http-request.adoc[]
+====
+====
+Request Path Parameter
+include::{snippets}/delete-catering-product/path-parameters.adoc[]
+====
+====
+Response
+include::{snippets}/download-image/http-response.adoc[]
+====

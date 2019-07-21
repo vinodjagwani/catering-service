@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="LOG_DIR">/data/logs/catering-service</Property>
+		<Property name="PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SXXX} | %-5level[catering-service,%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-Span-Export}] | CATERWINGS | AppLog | CATERING_SERVICE | JAVA | %t | %-30.40c{1.} | %msg%n</Property>
+	</Properties>
+
+	<CustomLevels>
+		<CustomLevel name="EVENT" intLevel="450" />
+	</CustomLevels>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${PATTERN}" />
+		</Console>
+
+		<RollingFile name="RollingFile" fileName="${LOG_DIR}/application.log"
+					 filePattern="${LOG_DIR}/$${date:yyyy-MM}/application-%d{yyyy-MM-dd}.log.%i">
+			<PatternLayout pattern="${PATTERN}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_DIR}" maxDepth="2">
+					<IfFileName glob="*/application-*.log" />
+					<IfLastModified age="15d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+
+		<Async name="Async">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="RollingFile"/>
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="Async"/>
+		</Root>
+	</Loggers>
+</Configuration>
